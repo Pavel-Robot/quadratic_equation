@@ -1,6 +1,14 @@
-// Module quadratic_equation for calc equations
-// By Verevkin Pavel Nikolaevich from University Science and Technology
-// // in city Krasnoyarsk, student-magistry, email: verevkinpavel1997@mail.ru
+/*
+ * / (КОРНЕВАЯ ДИРЕКТОРИЯ)
+ *
+ *
+ * quadratic_equation.c (НАЗВАНИЕ ФАЙЛА)
+ *
+ *		Module quadratic_equation for calc equations.
+ *      By Verevkin Pavel Nikolaevich from University Science and Technology
+ *      in city Krasnoyarsk, student-magistry, email: verevkinpavel1997@mail.ru
+ *                                    telegram: https://t.me/PublicHeroWin
+ */
 
 #include <stdio.h>
 #include <math.h> // sqrt()
@@ -19,8 +27,8 @@ int main(int argc, char *argv[])
     // Для использования программы из командной строки
     if(PROGRAM_COMMAND_LINE_ARGS == TRUEMY){
 
-        // Если мало аргументов
-        if(argc <= 1) {puts("Неверное количество аргументов <=1"); return 1;}
+        // Если мало аргументов (отсчет для argc с 1, для argv с 0)
+        if(argc <= 1) {fprintf(stderr,"Ошибка: неверное количество аргументов <=1\n"); return 1;}
 
         // Справка по аргуметам и примеры
         if(strcmp(argv[1], "-h") == TRUEMY)
@@ -42,27 +50,37 @@ int main(int argc, char *argv[])
         }
 
         // Проверка на допустимое количество аргументов
-        if(argc < 4 || argc > 8) { puts("Неверное количество параметров : должно 3-7 : введено :"); puts(argc); return 3;}
-
+        if(argc < 4 || argc > 8) { fprintf(stderr, "Неверное количество параметров : должно <4 or >8 : введено :%d\n", argc); return 3;}
+        
         // Проверка на ввод и ошибка для аргумента [4]
-        if(strcmp(argv[4], "-y") == TRUEMY) {default_see = TRUEMY;}
+        if(argc == 5)
+        if(strcmp(argv[4], "-y") == TRUEMY) {;}
         else if(strcmp(argv[4], "-n") == TRUEMY) {default_see = FALSEMY;}
-        else { puts("Аргументом [4] может быть только -y/-n"); return 4;}
+        else { fprintf(stderr, "Аргументом [4] может быть только -y/-n\n"); return 4;}
 
-        // Проверка на ввод и ошибка для аргумента [5]        
-        if(strcmp(argv[5], "-yp") == TRUEMY) {see_path_line = TRUEMY; puts(argv[0]);}
+        // Проверка на ввод и ошибка для аргумента [5]       
+        if(argc == 6) 
+        if(strcmp(argv[5], "-yp") == TRUEMY) {
+            see_path_line = TRUEMY; 
+            puts(argv[0]);
+            }
         else if(strcmp(argv[5], "-np") == TRUEMY) {see_path_line = FALSEMY;}
-        else { puts("Аргументом [5] может быть только -yp/-np"); return 5;}       
+        else { fprintf(stderr, "Аргументом [5] может быть только -yp/-np\n"); return 5;}       
 
         // Проверка на ввод и ошибка для аргумента [6]
-        if(strcmp(argv[6], "-yr") == TRUEMY) {root_see = TRUEMY; puts(argv[1]); puts(argv[2]); puts(argv[3]);}
+        if(argc == 7)
+        if(strcmp(argv[6], "-yr") == TRUEMY) {
+            root_see = TRUEMY; 
+            puts(argv[1]); puts(argv[2]); puts(argv[3]);
+            }
         else if(strcmp(argv[6], "-nr") == TRUEMY) {root_see = FALSEMY;}
-        else { puts("Аргументом [6] может быть только -yr/-nr"); return 6;}    
+        else { fprintf(stderr, "Аргументом [6] может быть только -yr/-nr\n"); return 6;}    
 
         // Проверка на ввод и ошибка для аргумента [7]
+        if(argc == 8)
         if(strcmp(argv[7], "-ymas") == TRUEMY) {type_response = TRUEMY;}
         else if(strcmp(argv[7], "-nmas") == TRUEMY) {type_response = FALSEMY;}
-        else { puts("Аргументом [7] может быть только -y/-n"); return 7;}
+        else { fprintf(stderr, "Аргументом [7] может быть только -ymas/-nmas\n"); return 7;}
 
     }
 
@@ -71,7 +89,7 @@ int main(int argc, char *argv[])
     double* root = malloc(1 * sizeof(double));
     if(root == NULL) 
     {
-        printf("Memory not allocated.\n");
+        fprintf(stderr, "Ошибка: memory not allocated.\n");
         exit(0);
     }
     else 
@@ -80,7 +98,7 @@ int main(int argc, char *argv[])
 
         // Отображение
         if(default_see == TRUEMY)
-        if(size == -1) printf("Error: size = -1");
+        if(size == -1) fprintf(stderr, "Error: размер size = -1\n");
         else if(size <= 2)
         {   
             if(type_response == FALSEMY)
@@ -92,7 +110,7 @@ int main(int argc, char *argv[])
         {
             if(type_response == FALSEMY)
             {
-            printf("cl = %f + %f*i; ", root[0], root[1]);
+            printf("c1 = %f + %f*i; ", root[0], root[1]);
             printf("c2 = %f + %f*i\n", root[2], root[3]);
             } else printf("%f %f %f %f\n", root[0], root[1], root[2], root[3]);
         }
