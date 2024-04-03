@@ -1,6 +1,8 @@
 # Makefile for build program
 .PHONY: all install uninstall clean check
 
+SHELL := /bin/bash
+
 CC=gcc # CC указываем компилятор, используемый для сборки
 CFLAGS=-c -Wall # в переменной CFLAGS лежат флаги, которые передаются компилятору
 POST_FLAGS=-lm#для математических библиотеке
@@ -33,16 +35,29 @@ clean:
 
 
 PATH_TESTS=tests
-check: test1
-	echo "Testing module quadratic_equation"
+check: init test1
+	echo "Testing module quadratic_equation end!"
+
 
 P_TS1=$(PATH_TESTS)/test1
+P_TS2=$(PATH_TESTS)/test2
+init:
+	echo "Testing module quadratic_equation start!"
+	> $(P_TS1)/output.txt
+	> $(P_TS2)/output.txt
+
 test1: $(NAME) $(P_TS1)/input.txt $(P_TS1)/output.txt $(P_TS1)/correct.txt 
 	
 	while IFS= read -r line; do\
     	echo "$$line";\
     	string="$$line";\
     	args=$$(echo $$string);\
-    	./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
+		if [ -n "$$line" ] && ! [[ $$line == *"#"* ]]; then\
+			./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
+		else\
+			echo "" 1>> $(P_TS1)/output.txt;\
+		fi\
   	done < $(P_TS1)/input.txt
 
+    #./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
+# if [ -n "$$line" ]; then echo "Program"; else echo "Probel";fi\
