@@ -56,3 +56,8 @@ The file quadratic_equation.h defines, structures and enums.
 The tests are located in the tests directory.
 
 The makefile contains installation and testing instructions.
+
+## Dependencies
+*gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)
+*Linux kernel 5.15.0-100-universal
+*Make 4.3
