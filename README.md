@@ -53,6 +53,12 @@ Use example:
 ./quadratic_equation 1 2 3 
 ```
 
+Ans:
+
+```
+-1.000000 1.414214 -1.000000 -1.414214
+```
+
 ## Structure
 
 The main quadratic_equation.c file contains the implementation.
