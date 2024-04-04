@@ -26,12 +26,12 @@
 
 
 
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
-Ошибка: это не квадратичное уравнение т.к. a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
+Error: this is not a quadratic equation because a=0
