@@ -47,6 +47,12 @@ To call help for commands, call
 ./quadratic_equation -h
 ```
 
+Use example:
+
+```
+./quadratic_equation 1 2 3 
+```
+
 ## Structure
 
 The main quadratic_equation.c file contains the implementation.
