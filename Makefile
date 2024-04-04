@@ -94,4 +94,4 @@ test2: $(P_TS2)/input.txt $(P_TS2)/output.txt $(P_TS2)/correct.txt
 		else\
 			echo "" 1>> $(P_TS2)/output.txt; fi; ((counter++));\
 	done < $(P_TS2)/input.txt 3< $(P_TS2)/correct.txt; \
-	echo -e "\e[96mTest1 check: total $$((coun_test-1)) : correct $$true_test : incorrect $$(($$coun_test-$$true_test-1))\e[0m"\
+	echo -e "\e[96mTest2 check: total $$((coun_test-1)) : correct $$true_test : incorrect $$(($$coun_test-$$true_test-1))\e[0m"\
