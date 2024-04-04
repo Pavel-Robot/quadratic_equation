@@ -21,8 +21,8 @@
 
 0.565550 -1.025550
 3.750000 4.575751 3.750000 -4.575751
-Ошибка: это не квадратичное уравнение т.к. a=0
+Error: this is not a quadratic equation because a=0
 1.750000 -1.534329 1.750000 1.534329
-Ошибка: это не квадратичное уравнение т.к. a=0
+Error: this is not a quadratic equation because a=0
 0.500000 -1.830301 0.500000 1.830301
-Ошибка: это не квадратичное уравнение т.к. a=0
+Error: this is not a quadratic equation because a=0
