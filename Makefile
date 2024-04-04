@@ -3,19 +3,19 @@
 
 SHELL := /bin/bash
 
-CC=gcc # CC указываем компилятор, используемый для сборки
-CFLAGS=-c -Wall # в переменной CFLAGS лежат флаги, которые передаются компилятору
-POST_FLAGS=-lm#для математических библиотеке
-# c - компилировать исходный файл, но не выполнять этап линковки
-# Wall - включить все предупреждения компилятора
-# o - указать имя файла после компиляции
+CC=gcc
+CFLAGS=-c -Wall
+POST_FLAGS=-lm
 
-NAME=quadratic_equation#Название выходной программы
-BUILD=build#директория для сборки модуля
+# Name of the output program
+NAME=quadratic_equation
+#The directory for building the module
+BUILD=build
 
-all: execute # стандартная цель по умолчанию
-#$(CC) main.o factorial.o hello.o -o quadratic_equation 
-execute: main $(BUILD)/$(NAME).o#factorial.o hello.o
+# default standard target
+all: execute 
+
+execute: main $(BUILD)/$(NAME).o
 	$(CC) $(BUILD)/$(NAME).o -o $(BUILD)/$(NAME) $(POST_FLAGS)
 
 main: c/quadratic_equation.c
@@ -33,6 +33,7 @@ clean:
 	rm -R $(BUILD)/*
 	rmdir $(BUILD)
 
+# Testing
 PATH_TESTS=tests
 check: init test1 test2
 	@echo -e "\e[38;5;166mTesting module quadratic_equation end!\e[0m"
