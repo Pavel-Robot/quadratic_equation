@@ -33,39 +33,64 @@ clean:
 	rm -R $(BUILD)/*
 	rmdir $(BUILD)
 
-
 PATH_TESTS=tests
-check: init test1
-	echo "Testing module quadratic_equation end!"
+check: init test1 test2
+	@echo -e "\e[38;5;166mTesting module quadratic_equation end!\e[0m"
 
 
 P_TS1=$(PATH_TESTS)/test1
 P_TS2=$(PATH_TESTS)/test2
 init:
-	echo "Testing module quadratic_equation start!"
+	@echo -e "\e[38;5;166mTesting module quadratic_equation start!\e[0m"
 	> $(P_TS1)/output.txt
 	> $(P_TS2)/output.txt
 
-test1: $(NAME) $(P_TS1)/input.txt $(P_TS1)/output.txt $(P_TS1)/correct.txt 
+test1: $(P_TS1)/input.txt $(P_TS1)/output.txt $(P_TS1)/correct.txt
+	@echo -e "\e[38;5;166mTesting 1!\e[0m"; \
+	out=""; \
+	err=""; \
 	counter=1; \
-	while IFS= read -r line; do\
-    	echo "$$line";\
-    	string="$$line";\
-    	args=$$(echo $$string);\
-		if [ -n "$$line" ] && ! [[ $$line == *"#"* ]]; then\
-			./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
-		else\
-			echo "" 1>> $(P_TS1)/output.txt;\
-		fi; ((counter++));\
-  	done < $(P_TS1)/input.txt 
-
-test2:
-	counter=1; \
+	coun_test=1; \
+	true_test=0; \
 	while IFS= read -r line1 && IFS= read -r line2 <&3; do\
-		[ "$$line1" == "$$line2" ] \
-		&& echo -e "\e[32mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[32m[OK]\e[0m" \
-		|| echo -e "\e[31mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[31m[NO]\e[0m"; \
-		((counter++));\
-	done < $(P_TS1)/output.txt 3< $(P_TS1)/correct.txt
-#echo "$$line1" "$$line2";\
-# Checking the input data of the string 1 --------------- []
+		string="$$line1";\
+    	args=$$(echo $$string);\
+		if [ -n "$$line1" ] && ! [[ $$line1 == *"#"* ]]; then\
+			out=$$(./quadratic_equation $$args 2>&1); \
+			echo "$$out" >> $(P_TS1)/output.txt; \
+			if [ "$$out" == "$$line2" ];\
+			then\
+				echo -e "\t\e[34m$$coun_test\e[0m \e[32mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[32m[OK]\e[0m"; \
+				((true_test++));\
+			else\
+				echo -e "\t\e[34m$$coun_test\e[0m \e[31mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[31m[NO]\e[0m";\
+				fi;((coun_test++));\
+		else\
+			echo "" 1>> $(P_TS1)/output.txt; fi; ((counter++));\
+	done < $(P_TS1)/input.txt 3< $(P_TS1)/correct.txt; \
+	echo -e "\e[96mTest1 check: total $$((coun_test-1)) : correct $$true_test : incorrect $$(($$coun_test-$$true_test-1))\e[0m"\
+
+test2: $(P_TS2)/input.txt $(P_TS2)/output.txt $(P_TS2)/correct.txt
+	@echo -e "\e[38;5;166mTesting 2!\e[0m"; \
+	out=""; \
+	err=""; \
+	counter=1; \
+	coun_test=1; \
+	true_test=0; \
+	while IFS= read -r line1 && IFS= read -r line2 <&3; do\
+		string="$$line1";\
+    	args=$$(echo $$string);\
+		if [ -n "$$line1" ] && ! [[ $$line1 == *"#"* ]]; then\
+			out=$$(./quadratic_equation $$args 2>&1); \
+			echo "$$out" >> $(P_TS2)/output.txt; \
+			if [ "$$out" == "$$line2" ];\
+			then\
+				echo -e "\t\e[34m$$coun_test\e[0m \e[32mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[32m[OK]\e[0m"; \
+				((true_test++));\
+			else\
+				echo -e "\t\e[34m$$coun_test\e[0m \e[31mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[31m[NO]\e[0m";\
+				fi;((coun_test++));\
+		else\
+			echo "" 1>> $(P_TS2)/output.txt; fi; ((counter++));\
+	done < $(P_TS2)/input.txt 3< $(P_TS2)/correct.txt; \
+	echo -e "\e[96mTest1 check: total $$((coun_test-1)) : correct $$true_test : incorrect $$(($$coun_test-$$true_test-1))\e[0m"\
