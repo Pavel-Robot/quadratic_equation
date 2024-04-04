@@ -24,7 +24,7 @@ main: c/quadratic_equation.c
 
 install:
 	cp $(BUILD)/$(NAME) $(NAME)
-	clean
+	make clean
 
 uninstall:
 	rm quadratic_equation
