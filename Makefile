@@ -47,7 +47,7 @@ init:
 	> $(P_TS2)/output.txt
 
 test1: $(NAME) $(P_TS1)/input.txt $(P_TS1)/output.txt $(P_TS1)/correct.txt 
-	
+	counter=1; \
 	while IFS= read -r line; do\
     	echo "$$line";\
     	string="$$line";\
@@ -56,8 +56,16 @@ test1: $(NAME) $(P_TS1)/input.txt $(P_TS1)/output.txt $(P_TS1)/correct.txt
 			./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
 		else\
 			echo "" 1>> $(P_TS1)/output.txt;\
-		fi\
-  	done < $(P_TS1)/input.txt
+		fi; ((counter++));\
+  	done < $(P_TS1)/input.txt 
 
-    #./quadratic_equation $$args 1>> $(P_TS1)/output.txt 2>>$(P_TS1)/output.txt;\
-# if [ -n "$$line" ]; then echo "Program"; else echo "Probel";fi\
+test2:
+	counter=1; \
+	while IFS= read -r line1 && IFS= read -r line2 <&3; do\
+		[ "$$line1" == "$$line2" ] \
+		&& echo -e "\e[32mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[32m[OK]\e[0m" \
+		|| echo -e "\e[31mChecking the output data with correct of the test line \e[95m$$counter\e[0m ---- \e[31m[NO]\e[0m"; \
+		((counter++));\
+	done < $(P_TS1)/output.txt 3< $(P_TS1)/correct.txt
+#echo "$$line1" "$$line2";\
+# Checking the input data of the string 1 --------------- []
