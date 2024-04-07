@@ -70,7 +70,7 @@ The main quadratic_equation.c file contains the implementation.
 The file quadratic_equation.h defines, structures and enums.
 For example, you can change the behavior of the program from waiting for the transfer of console a,b,c by changing PROGRAM_COMMAND_LINE_ARGS TRUEMY to FALSEMY and work with input data using the solve_equation(...) function.
 
-The tests are located in the tests directory. The tests are made by comparing the input with the output of the program. We get the input values from input.txt , we get the value and put it in output.txt after that, we compare the values with the lines in the file correct.txt . We do this through the bash while loop. You can also use diff to see the differences in the tests or write python unit testing separately, but I did so.
+The tests are located in the tests directory. The tests are made by comparing the input with the output of the program. We get the input values from input.txt , we get the value and put it in output.txt after that, we compare the values with the lines in the file correct.txt . We do this through the bash while loop. You can also use diff to see the differences (diff output.txt correct.txt) in the tests or write python unit testing separately, but I did so.
 
 The makefile contains installation and testing instructions.
 
