@@ -1,4 +1,4 @@
-# Тестирование когда все входные единицы, варианты разные по знаку
+# Testing when all the input units, the options are different in sign
 1 1 1
 1 1 -1
 1 -1 1
@@ -8,24 +8,24 @@
 -1 -1 1
 -1 -1 -1
 
-# Тестирование когда входная единица на 1 и 3 позиции
+# Testing when the input unit is at 1 and 3 positions
 1 0 1
 1 0 -1
 -1 0 1
 -1 0 -1
 
-# Тестирование когда входная единица на 1 и 2 позиции
+# Testing when the input unit is at 1 and 2 positions
 1 1 0
 1 -1 0
 -1 1 0
 -1 -1 0
 
-# Тестирование когда все входная единица одна на 1 позиции
+# Testing when all input units are one for 1 position
 1 0 0
 -1 0 0
 
 
-# Тестирование когда входная единица на 2 и 3 позиции
+# Testing when the input unit is at 2 and 3 positions
 0 1 1
 0 1 -1
 0 -1 1
@@ -35,3 +35,9 @@
 0 0 -1
 0 1 0
 0 -1 0
+
+# For D == 0
+1 4 4
+
+# For D > 0
+2 7 4

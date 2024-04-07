@@ -140,13 +140,23 @@ int main(int argc, char *argv[])
     }
     else
     {
+        if(PROGRAM_COMMAND_LINE_ARGS == TRUEMY)
         size = solve_equation(atof(argv[1]), atof(argv[2]), atof(argv[3]), root);
+        else size = solve_equation(1., 4., 4., root);
 
-        // Отображение
+        // Vision answer
         if (default_see == TRUEMY)
-            if (size == -1)
+            if (size == -1) // if error
                 fprintf(stderr, "Error: size = -1\n");
-            else if (size <= 2)
+            else if(size == 1) { // one real root
+                if (type_response == FALSEMY)
+                {
+                    printf("x1,x2 = %f; ", root[0]);
+                }
+                else
+                    printf("%f\n", root[0]);
+            }
+            else if (size <= 2) // two real root
             {
                 if (type_response == FALSEMY)
                 {
@@ -156,7 +166,7 @@ int main(int argc, char *argv[])
                 else
                     printf("%f %f\n", root[0], root[1]);
             }
-            else
+            else // complex vision
             {
                 if (type_response == FALSEMY)
                 {
