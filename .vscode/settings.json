@@ -3,6 +3,8 @@
         "stdio.h": "c",
         "cmath": "c",
         "math.h": "c",
-        "quadratic_equation.h": "c"
+        "quadratic_equation.h": "c",
+        "type_traits": "c",
+        "string.h": "c"
     }
 }

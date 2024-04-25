@@ -16,10 +16,17 @@
 #define SEE_PATH_FILE TRUEMY // Whether to show the full path to the file that we are launching
 #define ROOT_SEE TRUEMY // Show the entered input a b c
 #define TYPE_RESPONSE TRUEMY // The answer type is yes - [x1, x2] or [[c1,c1e], [c2,c2e]], no - as a string x1= x2=
+#define TESTING_PROGRAM FALSEMY // If want testing program
 
+struct sys_parametrs;
 
 //Prototipe function for calc ax^2+bx+c=0
 int solve_equation(double a, double b, double c, double* root);
+void solve_equation_main(int argc, char *argv[], double a, double b, double c, struct sys_parametrs sys, char* ans);
+
+struct sys_parametrs input_args(int argc, char *argv[]);
+
+void ts(double a, double b, double c, char* correct, char* ans);
 
 // enums
 enum type_eq // type of equation
@@ -57,6 +64,16 @@ struct data_eq // all possible equation data
     double discr; // the number characterizing the equation
     double x1, x2; // real roots equation
     struct complex cmp1, cmp2; // complex roots equation
+};
+
+struct sys_parametrs
+{
+    int default_see; // Show what the roots are equal to
+    int command_line_use; // Use from the command line
+    int see_path_line; // Whether to show the full path to the file that we are launching
+    int root_see; // Show the entered input a b c
+    int type_response; // The answer type is yes - [x1, x2] or [[c1,c1e], [c2,c2e]], no - as a string x1= x2=
+    int testing_program; // If want testing program
 };
 
 #endif // QUADRATIC_EQ_H

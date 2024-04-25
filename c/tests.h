@@ -7,69 +7,57 @@
 
 #ifndef QUADRATIC_EQ_TEST
 #define QUADRATIC_EQ_TEST
-#include "quadratic_equation.c"
-#include <assert.h>     /* определение assert */
+#include <assert.h>
+#include "quadratic_equation.h"
 
-void fortest(int argc, char *argv[])
+
+void ts(double a, double b, double c, char* correct, char* ans){
+    int argc = 2;
+    char *argv[] = {"program_name", "-t"};
+
+    struct sys_parametrs sys = input_args(argc, argv);  
+    sys.command_line_use == FALSEMY;
+
+    solve_equation_main(argc, argv, a, b, c, sys, ans);
+
+    printf("%s\n%s\n", ans, correct);
+
+    //assert(1>2);
+}
+
+void tests();
+void test1();
+void test2();
+
+void tests()
 {
-    /*
-    int size = -1;
-    double *root = malloc(1 * sizeof(double));
-    if (root == NULL)
-    {
-        fprintf(stderr, "Error: memory is not allocated.\n");
-        exit(0);
-    }
-    else
-    {
-        if(PROGRAM_COMMAND_LINE_ARGS == TRUEMY)
-        size = solve_equation(atof(argv[1]), atof(argv[2]), atof(argv[3]), root);
-        else size = solve_equation(1., 4., 4., root);
+    printf("Start testing!\n");
+    
+    test1();
 
-        // Vision answer
-        if (default_see == TRUEMY)
-            if (size == -1) // if error
-                fprintf(stderr, "Error: size = -1\n");
-            else if(size == 1) { // one real root
-                if (type_response == FALSEMY)
-                {
-                    printf("x1,x2 = %f; ", root[0]);
-                }
-                else
-                    printf("%f\n", root[0]);
-            }
-            else if (size <= 2) // two real root
-            {
-                if (type_response == FALSEMY)
-                {
-                    printf("x1 = %f; ", root[0]);
-                    printf("x2 = %f;\n", root[1]);
-                }
-                else
-                    printf("%f %f\n", root[0], root[1]);
-            }
-            else // complex vision
-            {
-                if (type_response == FALSEMY)
-                {
-                    printf("c1 = %f + %f*i; ", root[0], root[1]);
-                    printf("c2 = %f + %f*i\n", root[2], root[3]);
-                }
-                else
-                    printf("%f %f %f %f\n", root[0], root[1], root[2], root[3]);
-            }
-    }
-
-    free(root);
-    */
 }
+/*
+# Testing when all the input units, the options are different in sign
+1 1 1 -0.500000 0.866025 -0.500000 -0.866025
+1 1 -1 0.618034 -1.618034
+1 -1 1 0.500000 0.866025 0.500000 -0.866025
+1 -1 -1 1.618034 -0.618034
+-1 1 1 -0.618034 1.618034
+-1 1 -1 0.500000 -0.866025 0.500000 0.866025
+-1 -1 1 -1.618034 0.618034
+-1 -1 -1 -0.500000 -0.866025 -0.500000 0.866025
+*/
 
-void tests(){
-    printf("Running tests");
-
-    //assert(fortest(2, "1 1 1") == "1 2 3");
+void test1()
+{
+    char ans[50];
+    char cor[] = "-0.500000 0.866025 -0.500000 -0.866025";
+    
+    ts(1, 1, 1, 
+        cor,
+        ans);
+    printf("%s", ans);
+    
 }
-
-
 
 #endif // QUADRATIC_EQ_TEST
