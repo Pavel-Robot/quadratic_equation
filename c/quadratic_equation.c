@@ -15,6 +15,7 @@
 #include <stdlib.h> // for malloc() and realloc(), atof()
 #include <string.h> // for strcmp(a,b)
 #include "quadratic_equation.h"
+#include "tests.h"
 
 int main(int argc, char *argv[])
 {
@@ -132,7 +133,7 @@ int main(int argc, char *argv[])
 
     // How use function
     int size = -1;
-    double *root = malloc(1 * sizeof(double));
+    double *root = (double *)malloc(1 * sizeof(double));
     if (root == NULL)
     {
         fprintf(stderr, "Error: memory is not allocated.\n");
@@ -178,6 +179,10 @@ int main(int argc, char *argv[])
             }
     }
 
+    free(root);
+
+    //tests();
+
     return 0;
 }
 
@@ -201,7 +206,7 @@ int solve_equation(double a, double b, double c, double *root)
                 data.x1 = (-b + sqrt(data.discr)) / (2 * a);
                 data.x2 = (-b - sqrt(data.discr)) / (2 * a);
 
-                root = realloc(root, sizeof(double) * 2);
+                root = (double *)realloc(root, sizeof(double) * 2);
                 root[0] = data.x1;
                 root[1] = data.x2;
                 return data.n_root;
@@ -213,7 +218,7 @@ int solve_equation(double a, double b, double c, double *root)
                 data.x1 = -b / (2 * a);
                 data.x2 = data.x1;
 
-                root = realloc(root, sizeof(double) * 1);
+                root = (double *)realloc(root, sizeof(double) * 1);
                 root[0] = data.x1;
                 return data.n_root;
             }
@@ -227,7 +232,7 @@ int solve_equation(double a, double b, double c, double *root)
                 data.cmp2.real_part = data.cmp1.real_part;
                 data.cmp2.image_part = -1 * data.cmp1.image_part;
 
-                root = realloc(root, sizeof(double) * 4);
+                root = (double *)realloc(root, sizeof(double) * 4);
                 root[0] = data.cmp1.real_part;
                 root[1] = data.cmp1.image_part;
                 root[2] = data.cmp2.real_part;
@@ -247,7 +252,7 @@ int solve_equation(double a, double b, double c, double *root)
                     data.x1 = sqrt(data.discr);
                     data.x2 = -data.x1;
 
-                    root = realloc(root, sizeof(double) * 2);
+                    root = (double *)realloc(root, sizeof(double) * 2);
                     root[0] = data.x1;
                     root[1] = data.x2;
                     return data.n_root;
@@ -261,7 +266,7 @@ int solve_equation(double a, double b, double c, double *root)
                     data.cmp2.real_part = 0;
                     data.cmp2.image_part = -data.cmp1.image_part;
 
-                    root = realloc(root, sizeof(double) * 4);
+                    root = (double *)realloc(root, sizeof(double) * 4);
                     root[0] = data.cmp1.real_part;
                     root[1] = data.cmp1.image_part;
                     root[2] = data.cmp2.real_part;
@@ -276,7 +281,7 @@ int solve_equation(double a, double b, double c, double *root)
                 data.x1 = 0;
                 data.x2 = -b / a;
 
-                root = realloc(root, sizeof(double) * 2);
+                root = (double *)realloc(root, sizeof(double) * 2);
                 root[0] = data.x1;
                 root[1] = data.x2;
                 return data.n_root;
@@ -288,7 +293,7 @@ int solve_equation(double a, double b, double c, double *root)
                 data.x1 = 0;
                 data.x2 = 0;
 
-                root = realloc(root, sizeof(double) * 2);
+                root = (double *)realloc(root, sizeof(double) * 2);
                 root[0] = data.x1;
                 return data.n_root;
             }
