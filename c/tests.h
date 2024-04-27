@@ -21,14 +21,14 @@ char* func(char* str) {
 void Test1_1(CuTest *tc) {
 	char* input = strdup("hello world");
 	char* actual = func(input);
-	char* expected = "HELLO WORLD";
+	char* expected = "HELLO WORLD2";
 	CuAssertStrEquals(tc, expected, actual);
 }
 
 // Набор тестов Test1
 CuSuite* Test1() {
 	CuSuite* suite = CuSuiteNew();
-	SUITE_ADD_TEST(suite, Test1);
+	SUITE_ADD_TEST(suite, Test1_1);
 	return suite;
 }
 

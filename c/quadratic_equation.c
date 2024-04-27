@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     // Set parametrs 
     struct sys_parametrs sys = input_args(argc, argv);
-
+    sys.testing_program = 0;
     // Solve eq or do tests
     if(sys.testing_program == TRUEMY) RunAllTests();
     else {
