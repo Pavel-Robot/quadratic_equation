@@ -18,18 +18,19 @@
 #include "tests.h"
 
 
-int main(int argc, char *argv[])
+int main()
 {
     /* Example use program and testing module */
-
+    int argc = 2;
+    char *argv[] = {"program_name", "-t"};
     // Set parametrs 
     struct sys_parametrs sys = input_args(argc, argv);
-    sys.testing_program = 0;
+    
     // Solve eq or do tests
-    if(sys.testing_program == TRUEMY) RunAllTests();
+    if(sys.testing_program == TRUEMY) RunAllTests(); // or ./a.out -t
     else {
         char ans[50]; // answer
-        solve_equation_main(argc, argv, 1., 2., 3., sys, ans);
+        solve_equation_main(argc, argv, 1, 2, 3, sys, ans);
         printf("%s", ans);
     }
     
@@ -262,6 +263,8 @@ void solve_equation_main(int argc, char *argv[], double a, double b, double c, s
 
 struct sys_parametrs input_args(int argc, char *argv[])
 {
+
+
     struct sys_parametrs sys = {SEE_ROOTS,
                                 PROGRAM_COMMAND_LINE_ARGS, 
                                 SEE_PATH_FILE, ROOT_SEE,
@@ -283,7 +286,7 @@ struct sys_parametrs input_args(int argc, char *argv[])
         {
             sys.testing_program = FALSEMY;
 
-            //tests();
+            RunAllTests();
 
             exit(400);
         }

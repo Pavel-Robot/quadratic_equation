@@ -6,10 +6,16 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-fdiagnostics-color=always",
+                "-Wall",
                 "-g",
-                "${file}",
+                "-I.",
+                "-Wno-address",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
+                "${file}",
+                "${fileDirname}/tests.h",
+                "${fileDirname}/CuTest/lib/CuTest.c",
+                "${fileDirname}/CuTest/lib/CuTest.h",
                 "-lm"
             ],
             "options": {

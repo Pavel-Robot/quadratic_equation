@@ -6,6 +6,8 @@
         "quadratic_equation.h": "c",
         "type_traits": "c",
         "string.h": "c",
-        "cutest.h": "c"
+        "cutest.h": "c",
+        "stdlib.h": "c",
+        "tests.h": "c"
     }
 }
