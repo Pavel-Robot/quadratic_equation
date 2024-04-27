@@ -17,7 +17,6 @@
 #include "quadratic_equation.h"
 #include "tests.h"
 
-void RunAllTests(void);
 
 int main(int argc, char *argv[])
 {

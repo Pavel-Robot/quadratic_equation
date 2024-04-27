@@ -10,6 +10,8 @@
 #include "CuTest/lib/CuTest.h"
 #include "quadratic_equation.h"
 
+void RunAllTests(void);
+
 CuSuite* Test1();
 
 // Тестируемая функция
