@@ -17,6 +17,7 @@
 #include "quadratic_equation.h"
 #include "tests.h"
 
+void RunAllTests(void);
 
 int main(int argc, char *argv[])
 {
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
     struct sys_parametrs sys = input_args(argc, argv);
 
     // Solve eq or do tests
-    if(sys.testing_program == TRUEMY) tests();
+    if(sys.testing_program == TRUEMY) RunAllTests();
     else {
         char ans[50]; // answer
         solve_equation_main(argc, argv, 1., 2., 3., sys, ans);
@@ -388,3 +389,14 @@ struct sys_parametrs input_args(int argc, char *argv[])
 }
 
 
+void RunAllTests(void) {
+	CuString *output = CuStringNew();
+	CuSuite* suite = CuSuiteNew();
+	
+	CuSuiteAddSuite(suite, Test1());
+
+	CuSuiteRun(suite);
+	CuSuiteSummary(suite, output);
+	CuSuiteDetails(suite, output);
+	printf("%s\n", output->buffer);
+}
