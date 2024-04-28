@@ -18,18 +18,17 @@
 #include "tests.h"
 
 
-int main()
+int main(int argc, char *argv[])
 {
     /* Example use program and testing module */
-    int argc = 2;
-    char *argv[] = {"program_name", "-t"};
+
     // Set parametrs 
     struct sys_parametrs sys = input_args(argc, argv);
     
     // Solve eq or do tests
     if(sys.testing_program == TRUEMY) RunAllTests(); // or ./a.out -t
     else {
-        char ans[50]; // answer
+        char ans[100]; // answer
         solve_equation_main(argc, argv, 1, 2, 3, sys, ans);
         printf("%s", ans);
     }
@@ -154,15 +153,16 @@ int solve_equation(double a, double b, double c, double *root)
     else
     {
         data.isWhoI = 0;
+        return 0;
         fprintf(stderr, "Error: this is not a quadratic equation because a=0\n");
-        exit(0);
+        //exit(0);
     }
 }
 
 // How use function
 void solve_equation_main(int argc, char *argv[], double a, double b, double c, struct sys_parametrs sys, char* ans)
 {
-    char str_buffer[50];
+    char str_buffer[256];
 
     int size = -1;
     double *root = (double *)malloc(1 * sizeof(double));
@@ -179,12 +179,18 @@ void solve_equation_main(int argc, char *argv[], double a, double b, double c, s
         else size = solve_equation(a, b, c, root);
         #endif
 
+        
         // Vision answer
         if (sys.default_see == TRUEMY)
             if (size == -1) // if error
             {
                 strcat(ans, "Error: size = -1");
                 //fprintf(stderr, "Error: size = -1\n");
+            }
+            else if(size == 0)
+            {
+                strcat(ans, "Error: this is not a quadratic equation because a=0");
+                return;
             }
             else if(size == 1) { // one real root
                 if (sys.type_response == FALSEMY)
@@ -396,6 +402,8 @@ void RunAllTests(void) {
 	CuSuite* suite = CuSuiteNew();
 	
 	CuSuiteAddSuite(suite, Test1());
+    CuSuiteAddSuite(suite, Test2());
+    CuSuiteAddSuite(suite, Test3());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);
