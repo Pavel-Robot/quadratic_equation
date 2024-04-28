@@ -76,7 +76,7 @@ The main quadratic_equation.c file contains the implementation.
 The file quadratic_equation.h defines, structures and enums.
 For example, you can change the behavior of the program from waiting for the transfer of console a,b,c by changing PROGRAM_COMMAND_LINE_ARGS TRUEMY to FALSEMY and work with input data using the solve_equation(...) function.
 
-The tests are located in the c/tests.h file. Run from func RunAllTests() in file quadratic_equation.c. Or build ./quadratic_equation -t.
+The tests are located in the c/tests.h file. Run from func RunAllTests() in file quadratic_equation.c. Or build ./quadratic_equation -t. I use CuTest from github.com/ennorehling/cutest. Many test fraemworks here: check.sourceforge.net/doc/check_html/check_2.html#Other-Frameworks-for-C.
 
 The makefile contains installation and testing instructions.
 
