@@ -25,11 +25,11 @@ make check
 
 If everything is fine, then
 
-![image](https://github.com/Pavel-Robot/quadratic_equation/assets/50141984/bf96f2b2-a9c3-4054-9cd2-7dda888c9846)
+![image](https://github.com/Pavel-Robot/quadratic_equation/assets/50141984/0235a4d7-6dff-47f9-b86c-16509d1c9b7a)
 
 At this point, the installation is complete. You may also need the following commands:
 
-4 To clean up and delete the build directory
+4 To clean up and delete quadratic_equation from the build directory
 
 ```
 make clean 
@@ -39,6 +39,12 @@ make clean
 
 ```
 make uninstall
+```
+
+6 Directly test module:
+
+```
+./quadratic_equation -t
 ```
 
 ## How to use the program
@@ -70,7 +76,7 @@ The main quadratic_equation.c file contains the implementation.
 The file quadratic_equation.h defines, structures and enums.
 For example, you can change the behavior of the program from waiting for the transfer of console a,b,c by changing PROGRAM_COMMAND_LINE_ARGS TRUEMY to FALSEMY and work with input data using the solve_equation(...) function.
 
-The tests are located in the tests directory. The tests are made by comparing the input with the output of the program. We get the input values from input.txt , we get the value and put it in output.txt after that, we compare the values with the lines in the file correct.txt . We do this through the bash while loop. You can also use diff to see the differences (diff output.txt correct.txt) in the tests or write python unit or (CTest, Google Test, CUnit, Check) testing separately, but I did so.
+The tests are located in the c/tests.h file. Run from func RunAllTests() in file quadratic_equation.c. Or build ./quadratic_equation -t.
 
 The makefile contains installation and testing instructions.
 
