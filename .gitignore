@@ -1,12 +1,6 @@
 quadratic_equation
 build
-/build/*
 info
-/info/*
 README.md
 tests
-/tests/*
-/c/CuTest/example_cutest_mini
-/c/CuTest/example_cutest_big
-/c/CuTest/example_cutest_simple
 /c/quadratic_equation
